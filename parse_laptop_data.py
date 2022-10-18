@@ -1,6 +1,7 @@
 
 
 """
+
 Below is a dictionary of the top 2 laptops of 2020 as reviewed by Tech Crunch.
 
 This data was pulled from an API. Currently there is no Python version of this API to use,
@@ -8,6 +9,10 @@ so the data has been ported in as is.
 
 Our goal is to be able to parse this data with code, so that we can utilize it in our code.
 """
+
+from re import I
+import types
+from unicodedata import name
 
 laptops = [
         {
@@ -66,16 +71,28 @@ laptops = [
 
 
 # 1.1 TODO: Print out the MacBook Pro url
-
+print(laptops[0]["url"])
 
 # 1.2 TODO: Write a function called `print_laptop_data` that takes in two parameters: `laptop` and `topic`, and returns nothing.
-#
+def print_laptop_data(laptop, topic): 
+    
+    if laptop == 'Apple Macbook Pro':
+        computer = laptops[0]
+        print(f'{laptop} {topic}: {computer["types"][0][topic]}')
+
+    elif laptop == "Dell XPS":
+            computer = laptops[1]
+            print(f'{laptop} {topic}: {computer["types"][0][topic]}')
+    else:
+        return None
+   
 #   If `laptop` is 'Apple Macbook Pro', the function should print out data about that computer.
+ 
 #   If `laptop` is 'Dell XPS', the function should print out data about that computer.
-#
+   
 #   NOTE: There are multiple types of each computer. Assume the user wants to know about the ones with
 #       the smaller (and therefore cheaper) screen size.
-#
+  
 #   The `topic` can be anything about the type of computer (price, screen size, cpu, etc). For example:
 #   If `topic` is 'prices', the function should print out all possible prices of the specified computer.
 #   If `topic` is 'colors', the function should print out all possible colors of the specified computer.
@@ -92,25 +109,32 @@ laptops = [
 #   1.3.1: All possible prices of the Apple Macbook Pro.
 #   1.3.2: All the color options for the Dell XPS.
 #   1.3.3: The screen_size of the Dell XPS.
-
+print_laptop_data("Apple Macbook Pro","price")
+print_laptop_data("Dell XPS","colors")
+print_laptop_data("Dell XPS","screen_size")
 
 # 2.1 TODO: Write a function called `list_prices` that takes one parameter: a list of computers, and returns nothing.
+def list_prices(laptops):
 #   Using nested loops, the function should print out all possible computer prices, one price on each line.
+    for i in laptops:
+        for thing in i["types"]:
+            for comp_prices in thing["price"]:
+                print(comp_prices)
+
 #   No need to specify which computer each price belongs to.
 
-
 # 2.2 TODO: Call your function to see that it works.
-
+list_prices(laptops)
 
 # 3.0 Suppose that the two versions of the 16-inch MacBook Pro are no longer available:
 #   - In the color 'space gray'
 #   - With '1 TB SSD' storage
-
 # 3.1 TODO: Update the `laptops` dictionary to reflect these changes.
-
+laptops[0]["types"][1]["colors"].remove("space gray")
+laptops[0]["types"][1]["storage"].remove("1 TB SSD")
 
 # 3.2 TODO: Print out the Macbook Pro dictionary to see the changes.
-
+print(laptops[0])
 
 # BONUS TODO: Write a function called `get_price_range` that returns the minimum and maximum prices out of all the options.
 
