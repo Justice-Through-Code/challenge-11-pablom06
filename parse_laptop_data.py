@@ -77,11 +77,11 @@ print(laptops[0]["url"])
 def print_laptop_data(laptop, topic): 
    if laptop == 'Apple Macbook Pro':
         computer = laptops[0]
-
-   if laptop == "Dell XPS":
-        computer = laptops[1]
    else:
-    computer = None
+    if laptop == "Dell XPS":
+        computer = laptops[1]
+    else:
+        computer = None
 
     print(f'{laptop} {topic}: {computer[1]["types"][0][topic]}')
 #   If `laptop` is 'Apple Macbook Pro', the function should print out data about that computer.
