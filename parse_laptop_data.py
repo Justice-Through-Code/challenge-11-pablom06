@@ -75,19 +75,22 @@ print(laptops[0]["url"])
 
 # 1.2 TODO: Write a function called `print_laptop_data` that takes in two parameters: `laptop` and `topic`, and returns nothing.
 def print_laptop_data(laptop, topic): 
-    computer = None 
-    print(computer)
-#   If `laptop` is 'Apple Macbook Pro', the function should print out data about that computer.
-    if laptop == 'Apple Macbook Pro':
+   if laptop == 'Apple Macbook Pro':
         computer = laptops[0]
-        print(computer)
-#   If `laptop` is 'Dell XPS', the function should print out data about that computer.
-    if laptop == "Dell XPS":
+
+   if laptop == "Dell XPS":
         computer = laptops[1]
-        print(computer) 
+   else:
+    computer = None
+
+    print(f'{laptop} {topic}: {computer[1]["types"][0][topic]}')
+#   If `laptop` is 'Apple Macbook Pro', the function should print out data about that computer.
+ 
+#   If `laptop` is 'Dell XPS', the function should print out data about that computer.
+   
 #   NOTE: There are multiple types of each computer. Assume the user wants to know about the ones with
 #       the smaller (and therefore cheaper) screen size.
-    
+  
 #   The `topic` can be anything about the type of computer (price, screen size, cpu, etc). For example:
 #   If `topic` is 'prices', the function should print out all possible prices of the specified computer.
 #   If `topic` is 'colors', the function should print out all possible colors of the specified computer.
