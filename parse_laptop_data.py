@@ -75,14 +75,17 @@ print(laptops[0]["url"])
 
 # 1.2 TODO: Write a function called `print_laptop_data` that takes in two parameters: `laptop` and `topic`, and returns nothing.
 def print_laptop_data(laptop, topic): 
-    computer = None 
+    
     if laptop == 'Apple Macbook Pro':
         computer = laptops[0]
-    else:
-        if laptop == "Dell XPS":
-            computer = laptops[1]
+        print(f'{laptop} {topic}: {computer["types"][0][topic]}')
 
-    print(f'{laptop} {topic}: {computer[1]["types"][0][topic]}')
+    elif laptop == "Dell XPS":
+            computer = laptops[1]
+            print(f'{laptop} {topic}: {computer["types"][0][topic]}')
+    else:
+        return None
+   
 #   If `laptop` is 'Apple Macbook Pro', the function should print out data about that computer.
  
 #   If `laptop` is 'Dell XPS', the function should print out data about that computer.
@@ -114,8 +117,8 @@ print_laptop_data("Dell XPS","screen_size")
 def list_prices(laptops):
 #   Using nested loops, the function should print out all possible computer prices, one price on each line.
     for i in laptops:
-        for types in i["types"]:
-            for comp_prices in types["price"]:
+        for thing in i["types"]:
+            for comp_prices in thing["price"]:
                 print(comp_prices)
 
 #   No need to specify which computer each price belongs to.
